@@ -41,6 +41,11 @@ class ComposeActivity : AppCompatActivity() {
                     override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
                         Log.i(TAG, "Successfully published tweet")
                         val tweet = Tweet.fromJson(json.jsonObject)
+
+                        val intent = Intent()
+                        intent.putExtra("tweet", tweet)
+                        setResult(RESULT_OK, intent)
+                        finish()
                     }
 
                     override fun onFailure(
